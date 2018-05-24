@@ -5,15 +5,14 @@ body {
   font-family: "Helvetica Neueu", "Helvetica", "Arial", sans;
 }
 
-
 input {
   width: 300px;
 }
 
 #camera {
-  display: inline-block;
+/*  display: inline-block;*/
   background-color: #eee;
-  width: 250px;
+  width: 300px;
   height: 300px;
   margin: 0.5em;
 }
