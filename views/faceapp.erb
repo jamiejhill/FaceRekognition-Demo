@@ -1,233 +1,55 @@
 <html>
   <head>
     <title>Face Recognition Test</title>
-    <link href="css/camera.css" rel="stylesheet" type="text/css" />
-    <style>
-      /* ---- reset ---- */
-      body {
-        margin: 0;
-        font: normal 75% Arial, Helvetica, sans-serif;
-      }
-      canvas {
-        display: block;
-        vertical-align: bottom;
-      } /* ---- particles.js container ---- */
-      #particles-js {
-        position: absolute;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(74, 74, 74, 1);
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: 50% 50%;
-      }
-
-      /** Container **/
-      #container {
-        position: absolute;
-        z-index: 2;
-        top: 38%;
-        left: 40%;
-      }
-
-      /** Pulsing **/
-      #pulse {
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 256px;
-        height: 256px;
-        border-radius: 50%;
-        background: #b0b0b0;
-        cursor: pointer;
-        box-shadow: 0 0 0 rgba(204,169,44, 0.4);
-        animation: pulse 4s infinite;
-      }
-      .pulse:hover {
-        animation: none;
-      }
-
-      @keyframes pulse {
-        0% {
-          box-shadow: 0 0 0 0 rgba(255,128,10, 0.4);
-        }
-        70% {
-            box-shadow: 0 0 0 50px rgba(255,128,10, 0);
-        }
-        100% {
-            box-shadow: 0 0 0 0 rgba(255,128,10, 0);
-        }
-      }
-    </style>
+    <link href="css/camera.css?v5" rel="stylesheet" type="text/css" />
+    <link href="css/main.css?v5" rel="stylesheet" type="text/css" />
   </head>
   <body>
+   <div id="bg">
+    <div id="particles-js"></div> 
     <div id="container">
      <div id="pulse">
-      <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80">
+      <!-- <svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" viewBox="0 0 150 150">
         <path fill="#4a4a4a" d="m21.9799778 76.0932297c1.0678531 0 1.9577308.8879024 1.9577308 1.9533852s-.8008899 1.9533851-1.9577308 1.9533851h-8.8987765c-7.20800886 0-13.0812013-5.8601554-13.0812013-13.0521643v-8.1687014c0-1.0654828.88987764-1.9533851 1.95773081-1.9533851s1.95773081.8879023 1.95773081 1.9533851v8.1687014c0 5.0610433 4.09343716 9.145394 9.16573968 9.145394zm-20.02224699-51.5871254c-1.06785317 0-1.95773081-.8879023-1.95773081-1.9533851v-9.5005549c0-7.19200892 5.87319244-13.0521643 13.0812013-13.0521643h8.8987765c1.0678531 0 1.9577308.88790233 1.9577308 1.95338513 0 1.06548279-.8898777 1.95338513-1.9577308 1.95338513h-8.8987765c-5.07230252 0-9.16573968 4.08435072-9.16573968 9.14539404v9.5005549c0 1.0654828-.88987764 1.9533851-1.95773081 1.9533851zm54.81646269 14.2952276c-1.3348164 0-2.4916573-1.0654828-2.4916573-2.4861266v-6.3041065c0-1.3318535 1.0678531-2.4861265 2.4916573-2.4861265 1.4238043 0 2.4916574 1.0654827 2.4916574 2.4861265v6.3928968c-.0889877 1.3318535-1.1568409 2.3973363-2.4916574 2.3973363zm21.2680757 18.0244173c1.0678532 0 1.9577308.8879023 1.9577308 1.9533851v8.1687014c0 7.1920089-5.8731924 13.0521643-13.0812013 13.0521643h-8.8987765c-1.0678531 0-1.9577308-.8879023-1.9577308-1.9533851s.8898777-1.9533852 1.9577308-1.9533852h8.8987765c5.0723025 0 9.1657397-4.0843507 9.1657397-9.145394v-8.1687014c0-1.0654828.8898776-1.9533851 1.9577308-1.9533851zm-26.2736374-.2885683c.8008899-.7991121 2.0467186-.7991121 2.7586207 0 .8008899.7991121.8008899 2.0421754 0 2.7524972-3.9154616 3.9955605-9.1657397 6.1265261-14.5939933 6.1265261h-.7119021c-5.4282537 0-10.589544-2.1309656-14.5939934-6.1265261-.8008898-.7991121-.8008898-2.0421753 0-2.7524972.8008899-.7991121 2.0467186-.7991121 2.7586207 0 3.2035595 3.1964484 7.3859845 4.9722531 11.8353727 4.9722531h.7119021c4.3604004 0 8.6318131-1.7758047 11.8353726-4.9722531zm15.1501669-56.5371809c7.2080089 0 13.0812013 5.86015538 13.0812013 13.0521643v9.5005549c0 1.0654828-.8898776 1.9533851-1.9577308 1.9533851s-1.9577308-.8879023-1.9577308-1.9533851v-9.5005549c0-5.06104332-4.0934372-9.14539404-9.1657397-9.14539404h-8.8987765c-1.0678531 0-1.9577308-.88790234-1.9577308-1.95338513 0-1.0654828.8898777-1.95338513 1.9577308-1.95338513zm-32.0355951 50.9655938c-1.0678532 0-1.9577309-.8879023-1.9577309-1.9533851s.8898777-1.9533852 1.9577309-1.9533852h.4449388c1.7797553 0 3.2925473-1.4206437 3.2925473-3.2852386v-13.4073252c0-1.0654828.8898776-1.9533851 1.9577308-1.9533851 1.0678531 0 1.9577308.8879023 1.9577308 1.9533851v13.4961154c0 3.9067703-3.2035595 7.1032187-7.2080089 7.1032187zm-12.8142381-23.4406215c1.3348165 0 2.4916574 1.0654827 2.4916574 2.4861265v6.3928968c0 1.3318535-1.0678532 2.3973363-2.4916574 2.3973363-1.3348164 0-2.4916574-1.0654828-2.4916574-2.4861266v-6.3041065c0-1.3318535 1.0678532-2.4861265 2.4916574-2.4861265z"/>
-      </svg>
+      </svg> -->
       <div id='camera'>
         <div id='placeholder'>
           <p>Your browser does not support a camera!</p>
         </div>
       </div>
      </div>
-   </div>
-
-   <div id="particles-js"></div>     
-    <br>
+   </div>   
+   <div id="ctas">
     <p>
-      <button id='compare_image'>Compare Image</button>
+      <button id='compare_image' class="button primary">Check Me In</button>
     </p>
     <br>
-    <input id='photo_id' placeholder='Enter name for photo' type='text'>
-    <button id='add_to_collection'>Add To Collection</button>
+    <div id="newuser">
+      <input id='photo_id' class='textfield' placeholder='Please enter your name' type='text'>
+      <button id='add_to_collection' class="button primary">Submit</button>
+      <br>
+    </div>
+    <div id="loading_img">
+      <div id="kountaLoadingIcon">
+        <div id="kountaLoadingIconRing"></div>
+      </div>    
+    </div>
     <br>
     <div id='upload_status'></div>
-    <div id='upload_result'></div>
-    <br>
-    <img height='100' id='loading_img' src='images/loading.gif' width='100'>
+    <div id='upload_result'></div>      
     <audio id='audio_speech' src='#'></audio>
     <br>
-    <br>
+    <!-- <br>
     <p>
       <a href="/collection/create">Create Collection</a> | <a href="/collection/delete">Delete Collection</a>
-    </p>
+    </p> -->
+  </div>
+ </div>
     <script src='https://code.jquery.com/jquery-3.1.1.min.js'></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
-    <script src="js/jpeg_camera/jpeg_camera_with_dependencies.min.js" type="text/javascript"></script>
-    <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="js/faceapp.js" type="text/javascript"></script>
-    <script>
-      particlesJS("particles-js", {
-        "particles": {
-            "number": {
-                "value": 80,
-                "density": {
-                    "enable": true,
-                    "value_area": 800
-                }
-            },
-            "color": {
-                "value": "#ff800a"
-            },
-            "shape": {
-                "type": "circle",
-                "stroke": {
-                    "width": 0,
-                    "color": "#000000"
-                },
-                "polygon": {
-                    "nb_sides": 5
-                },
-                "image": {
-                    "src": "img/github.svg",
-                    "width": 100,
-                    "height": 100
-                }
-            },
-            "opacity": {
-                "value": 0.5,
-                "random": false,
-                "anim": {
-                    "enable": false,
-                    "speed": 1,
-                    "opacity_min": 0.1,
-                    "sync": false
-                }
-            },
-            "size": {
-                "value": 3,
-                "random": true,
-                "anim": {
-                    "enable": false,
-                    "speed": 40,
-                    "size_min": 0.1,
-                    "sync": false
-                }
-            },
-            "line_linked": {
-                "enable": true,
-                "distance": 150,
-                "color": "#ff800a",
-                "opacity": 0.4,
-                "width": 1
-            },
-            "move": {
-                "enable": true,
-                "speed": 3,
-                "direction": "none",
-                "random": false,
-                "straight": false,
-                "out_mode": "out",
-                "bounce": false,
-                "attract": {
-                    "enable": false,
-                    "rotateX": 600,
-                    "rotateY": 1200
-                }
-            }
-        },
-        "interactivity": {
-            "detect_on": "canvas",
-            "events": {
-                "onhover": {
-                    "enable": true,
-                    "mode": "grab"
-                },
-                "onclick": {
-                    "enable": true,
-                    "mode": "push"
-                },
-                "resize": true
-            },
-            "modes": {
-                "grab": {
-                    "distance": 400,
-                    "line_linked": {
-                        "opacity": 1
-                    }
-                },
-                "bubble": {
-                    "distance": 400,
-                    "size": 40,
-                    "duration": 2,
-                    "opacity": 8,
-                    "speed": 3
-                },
-                "repulse": {
-                    "distance": 200,
-                    "duration": 0.4
-                },
-                "push": {
-                    "particles_nb": 4
-                },
-                "remove": {
-                    "particles_nb": 2
-                }
-            }
-        },
-        "retina_detect": true
-      });
-      var count_particles, stats, update;
-      stats = new Stats;
-      stats.setMode(0);
-      stats.domElement.style.position = 'absolute';
-      stats.domElement.style.left = '0px';
-      stats.domElement.style.top = '0px';
-      document.body.appendChild(stats.domElement);
-      count_particles = document.querySelector('.js-count-particles');
-      update = function () {
-          stats.begin();
-          stats.end();
-          if (window.pJSDom[0].pJS.particles && window.pJSDom[0].pJS.particles.array) {
-              count_particles.innerText = window.pJSDom[0].pJS.particles.array.length;
-          }
-          requestAnimationFrame(update);
-      };
-      requestAnimationFrame(update);
-    </script>
+    <script src="js/jpeg_camera/jpeg_camera_with_dependencies.min.js?v1" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="js/faceapp.js?v1" type="text/javascript"></script>
+    <script src="js/particle.js?v1" type="text/javascript"></script>
   </body>
 </html>

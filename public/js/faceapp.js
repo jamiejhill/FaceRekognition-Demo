@@ -8,7 +8,7 @@ $(document).ready(function() {
     var add_to_collection = function() {
       var photo_id = $("#photo_id").val();
       if (!photo_id.length) {
-        $("#upload_status").html("Please provide name for the upload");
+        $("#upload_status").html("Please provide a name");
         return;
       }
       var snapshot = camera.capture();
@@ -24,7 +24,6 @@ $(document).ready(function() {
         $("#loading_img").hide();
       });
     };
-
 
     // Compare the photographed image to the current Rekognition collection
     var compare_image = function() {

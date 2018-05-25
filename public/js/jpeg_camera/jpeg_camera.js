@@ -289,7 +289,7 @@
         this.video_container.style.width = "" + this.view_width + "px";
         this.video_container.style.height = "" + this.view_height + "px";
         this.video_container.style.overflow = "hidden";
-        //this.video_container.style.position = "absolute";
+        this.video_container.style.position = "absolute";
         this.video_container.style.zIndex = 1;
         this.container.appendChild(this.video_container);
         this.video = document.createElement('video');
