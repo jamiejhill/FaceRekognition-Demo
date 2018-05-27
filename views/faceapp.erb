@@ -1,8 +1,8 @@
 <html>
   <head>
     <title>Face Recognition Test</title>
-    <link href="css/camera.css?v5" rel="stylesheet" type="text/css" />
-    <link href="css/main.css?v5" rel="stylesheet" type="text/css" />
+    <link href="css/camera.css?v7" rel="stylesheet" type="text/css" />
+    <link href="css/main.css?v9" rel="stylesheet" type="text/css" />
   </head>
   <body>
    <div id="bg">
@@ -23,6 +23,12 @@
     <p>
       <button id='compare_image' class="button primary">Check Me In</button>
     </p>
+  </div>
+   <div id="donate">
+    <p>
+      <button id='donate-button' class="button primary" onclick="javascript:window.location.href=http://localhost:1234/donation';" href="http://localhost:1234/donation">Donate</a>
+    </p>
+  </div>
     <br>
     <div id="newuser">
       <input id='photo_id' class='textfield' placeholder='Please enter your name' type='text'>
@@ -38,6 +44,9 @@
     <div id='upload_status'></div>
     <div id='upload_result'></div>      
     <audio id='audio_speech' src='#'></audio>
+    <div id="shownewuser" style="display: none;">
+      <a onclick="javascript:document.getElementById('newuser').style.display = 'block'">New User</a>
+    </div>
     <br>
     <!-- <br>
     <p>
@@ -49,7 +58,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
     <script src="js/jpeg_camera/jpeg_camera_with_dependencies.min.js?v1" type="text/javascript"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="js/faceapp.js?v1" type="text/javascript"></script>
-    <script src="js/particle.js?v1" type="text/javascript"></script>
+    <script src="js/faceapp.js?v6" type="text/javascript"></script>
+    <script src="js/particle.js?v6" type="text/javascript"></script>
   </body>
 </html>

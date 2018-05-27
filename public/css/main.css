@@ -38,15 +38,23 @@
       #container {
         position: absolute;
         z-index: 2;
-        top: 20%;
-        left: 40%;
+        top: 32%;
+        left: 41%;
       }
 
       #ctas {
         position: absolute;
         width: 50%;
-        margin-top: 37%;
-        margin-left: 27%;
+        margin-top: 38%;
+        margin-left: 25%;
+      }
+
+      #donate {
+        position: absolute;
+        width: 50%;
+        margin-top: 38%;
+        margin-left: 25%;
+        display: none;
       }
 
       #newuser {
@@ -55,6 +63,20 @@
 
       #loading_img {
         display: none;
+      }
+
+      #upload_status {
+        color: #fff;
+        font-size: 14pt;
+      }
+
+      #upload_result {
+        color: #fff;
+        font-size: 14pt;
+      }
+
+      #confidence {
+        font-size: 8pt;
       }
 
       /** Pulsing **/
@@ -78,6 +100,11 @@
       .button.primary {
           color: rgb(255, 255, 255);
           background-color: rgb(255, 128, 10);
+      }
+      .button.donate {
+          color: rgb(255, 255, 255);
+          background-color: rgb(255, 128, 10);
+          padding: 0;
       }
       .button {
           display: inline-flex;

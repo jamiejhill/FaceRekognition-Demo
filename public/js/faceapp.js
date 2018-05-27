@@ -27,26 +27,34 @@ $(document).ready(function() {
 
     // Compare the photographed image to the current Rekognition collection
     var compare_image = function() {
+      $("#upload_status").html("");
+      $("#upload_result").html("");
       var snapshot = camera.capture();
       var api_url = "/compare";
       $("#loading_img").show();
       snapshot.upload({api_url: api_url}).done(function(response) {
         var data = JSON.parse(response);
         if (data.id !== undefined) {
-          $("#upload_result").html(data.message + ": " + data.id + ", Confidence: " + data.confidence);
+          $("#upload_result").html("Welcome, " + data.id + "<br /><br /><br /><br /><span id='confidence'>( Confidence: " + data.confidence + "% )</span");          
           // create speech response
           $.post("/speech", {tosay: "Good " + greetingTime(moment()) + " " + data.id}, function(response) {
             $("#audio_speech").attr("src", "data:audio/mpeg;base64," + response);
             $("#audio_speech")[0].play();
           });
+          // call API to create order with customer checkin
+          var checkin_url = 'http://localhost:1234/dev/createCheckin?id=' + data.id;
+          $.get(checkin_url);
+          $("#ctas").hide();
+          $("#donate").show();
         } else {
           $("#upload_result").html(data.message);
         }
         $("#loading_img").hide();
         this.discard();
       }).fail(function(status_code, error_message, response) {
-        $("#upload_status").html("Upload failed with status " + status_code + " (" + error_message + ")");
-        $("#upload_result").html(response);
+        // $("#upload_status").html("Upload failed with status " + status_code + " (" + error_message + ")");
+        // $("#upload_result").html(response);
+        $("#upload_status").html("Please Try Again...");
         $("#loading_img").hide();
       });
     };
